@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 # wireguard
-=======
->>>>>>> a1760a1b6f633f7abec9f9a130f4662f7bd75318
 ## Fast use:
 
 #### Launch container with default options
