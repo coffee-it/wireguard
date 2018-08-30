@@ -1,4 +1,5 @@
 #!/bin/sh
+SERVER() {
 mainprivkey=""
 mainpubkey=""
 cltpubkey=""
@@ -92,4 +93,13 @@ wgstatus=$(wg | grep wg0)
 if [ -n "$wgstatus" ]; then
 	wg-quick down wg0
 fi
+}
 
+CLIENT(){
+	echo "I'm a Client"
+	echo "My conf is $1"
+}
+case $1 in
+	"SERVER"	) SERVER;;
+	"CLIENT"	) CLIENT $2
+esac

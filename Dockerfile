@@ -7,6 +7,8 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.li
 	&& rm -rf /var/cache/apt/* \
 	&& mkdir /etc/wireguard/config
 
+ENV ROLE="SERVER"
+ENV NAME=""
 ENV IP=""
 ENV PORT="32500"
 ENV CLIENTS=""
@@ -16,7 +18,7 @@ COPY "autostart.sh" /home
 
 CMD iface=$(ip r | grep default | awk -Fdev '{print $2}' | awk -F " " '{print $1}') \
 	&& iptables -t nat -A POSTROUTING -o $iface -j MASQUERADE \
-	&& sh /home/autostart.sh \
+	&& echo "${ROLE} ${NAME}" && sh /home/autostart.sh ${ROLE} ${NAME} \
 	&& wg-quick up wg0 \
 	&& tail -f /dev/stdout
 
