@@ -93,11 +93,20 @@ wgstatus=$(wg | grep wg0)
 if [ -n "$wgstatus" ]; then
 	wg-quick down wg0
 fi
+wg-quick up wg0
 }
 
 CLIENT(){
+	confext=".conf"
+	WGPATH="/etc/wireguard/"
 	echo "I'm a Client"
 	echo "My conf is $1"
+	if [ -f "$WGPATH$1$confext" ]; then
+		wg-quick up $1
+	else
+		echo "File not found!"
+	fi
+	
 }
 case $1 in
 	"SERVER"	) SERVER;;
