@@ -1,5 +1,5 @@
 #!/bin/sh
-SERVER() {
+CREATE_SERVER() {
 mainprivkey=""
 mainpubkey=""
 cltpubkey=""
@@ -95,7 +95,9 @@ if [ -n "$wgstatus" ]; then
 fi
 wg-quick up wg0
 }
-
+START_SERVER(){
+wg-quick up wg0
+}
 CLIENT(){
 	confext=".conf"
 	WGPATH="/etc/wireguard/"
@@ -109,6 +111,7 @@ CLIENT(){
 	
 }
 case $1 in
-	"SERVER"	) SERVER;;
+	"SERVER"	) 
+		[ -f "/etc/wireguard/wg0.conf" ] && START_SERVER || CREATE_SERVER;;
 	"CLIENT"	) CLIENT $2
 esac
