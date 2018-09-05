@@ -1,4 +1,9 @@
 #!/bin/sh
+
+START_SERVER(){
+wg-quick up wg0
+}
+
 CREATE_SERVER() {
 mainprivkey=""
 mainpubkey=""
@@ -95,15 +100,13 @@ if [ -n "$wgstatus" ]; then
 fi
 wg-quick up wg0
 }
-START_SERVER(){
-wg-quick up wg0
-}
+
 CLIENT(){
 	confext=".conf"
 	WGPATH="/etc/wireguard/"
 	echo "I'm a Client"
 	echo "My conf is $1"
-	if [ -f "$WGPATH$1$confext" ]; then
+	if [ -f "$WGPATH$1$confext" ]; thendoc
 		wg-quick up $1
 	else
 		echo "File not found!"
