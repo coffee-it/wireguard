@@ -68,7 +68,7 @@ $ docker run -d --name wg0 --privileged -e ROLE=CLIENT -e NAME=user1\
      -p 32500:32500 coffeeit/wireguard
 ```
 
-###### If env {ROLE } not specified, takes the value {SERVER}
+###### If env {ROLE } not specified, it takes the value {SERVER}
 ##### ENV CLIENTS
 Use to specify the number of service users.
 By default, the CLIENTS=1 and maximum is limited to 253 on the same network.
